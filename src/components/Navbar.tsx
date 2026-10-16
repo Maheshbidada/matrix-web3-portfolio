@@ -10,11 +10,12 @@ const XSocialIcon = () => (
 )
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Roles', href: '#roles' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '#about', num: '01' },
+  { label: 'Experience', href: '#experience', num: '02' },
+  { label: 'Recognition', href: '#roles', num: '03' },
+  { label: 'Skills', href: '#skills', num: '04' },
+  { label: 'Ecosystems', href: '#ecosystems', num: '05' },
+  { label: 'Contact', href: '#contact', num: '06' },
 ]
 
 export default function Navbar() {
@@ -29,7 +30,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 900) setMenuOpen(false)
+      if (window.innerWidth > 960) setMenuOpen(false)
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -45,93 +46,100 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`navbar${scrolled ? ' scrolled' : ''}`} role="banner">
-        <div className="container navbar-inner">
-          {/* Wordmark */}
+      <header className={`nav-wrap${scrolled ? ' scrolled' : ''}`} role="banner">
+        <nav className="nav-bar" aria-label="Main navigation">
+          {/* Identity */}
           <a
             href="#"
-            className="nav-wordmark"
+            className="nav-logo-group"
             aria-label="Matrix 18, back to top"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
-            Matrix 18
+            <span className="nav-logo-name">Matrix 18</span>
+            <span className="nav-logo-sub">[ Field Journal ]</span>
           </a>
 
-          {/* Desktop nav */}
-          <nav aria-label="Main navigation">
-            <ul className="nav-links" role="list">
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="nav-link"
-                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Desktop Links */}
+          <ul className="nav-items" role="list">
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="nav-item-link"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleNavClick(link.href)
+                  }}
+                >
+                  <span className="nav-item-num" aria-hidden="true">{link.num}</span>
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
 
-          {/* CTA + hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* CTA & Mobile Toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <a
               href={X_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-cta"
-              aria-label="Contact Matrix 18 on X (formerly Twitter)"
+              className="btn-nav-cta"
+              aria-label="Contact Matrix 18 on X"
             >
               <XSocialIcon />
-              Contact on X
+              <span>Contact on X</span>
             </a>
 
             <button
-              className="nav-mobile-btn"
+              className="nav-mobile-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
+              aria-controls="mobile-nav-drawer"
             >
-              {menuOpen
-                ? <CloseIcon size={22} />
-                : <Menu size={22} />
-              }
+              {menuOpen ? <CloseIcon size={20} /> : <Menu size={20} />}
             </button>
           </div>
-        </div>
+        </nav>
       </header>
 
-      {/* Mobile menu */}
+      {/* Mobile Drawer */}
       <nav
-        id="mobile-menu"
-        className={`mobile-menu${menuOpen ? ' open' : ''}`}
-        aria-label="Mobile navigation"
+        id="mobile-nav-drawer"
+        className={`mobile-drawer${menuOpen ? ' open' : ''}`}
+        aria-label="Mobile navigation menu"
         aria-hidden={!menuOpen}
       >
         {navLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="mobile-nav-link"
-            onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
+            className="mobile-drawer-link"
+            onClick={(e) => {
+              e.preventDefault()
+              handleNavClick(link.href)
+            }}
             tabIndex={menuOpen ? 0 : -1}
           >
-            {link.label}
+            <span className="font-mono text-cobalt" style={{ fontSize: '0.78rem' }} aria-hidden="true">{link.num}</span>
+            <span>{link.label}</span>
           </a>
         ))}
         <a
           href={X_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-cta"
-          style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
+          className="btn-primary"
+          style={{ marginTop: '0.75rem', justifyContent: 'center' }}
           tabIndex={menuOpen ? 0 : -1}
           aria-label="Contact Matrix 18 on X"
         >
           <XSocialIcon />
-          Contact on X
+          <span>Contact on X</span>
         </a>
       </nav>
     </>

@@ -1,4 +1,5 @@
-import { ArrowDown } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 
 const X_URL = 'https://x.com/DeFiMatrix18'
 
@@ -9,10 +10,7 @@ const XSocialIcon = () => (
 )
 
 export default function Hero() {
-  const scrollToContact = (e: React.MouseEvent) => {
-    e.preventDefault()
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const [imageError, setImageError] = useState(false)
 
   const scrollToExperience = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -20,70 +18,120 @@ export default function Hero() {
   }
 
   return (
-    <section
-      id="home"
-      className="hero"
-      aria-labelledby="hero-headline"
-    >
-      {/* Decorative orbs */}
-      <div className="hero-orb-1" aria-hidden="true" />
-      <div className="hero-orb-2" aria-hidden="true" />
+    <section id="home" className="hero-section" aria-labelledby="hero-title">
+      <div className="container">
+        <div className="hero-spread-grid">
+          {/* Left Column: Asymmetrical Editorial Copy */}
+          <div className="hero-copy-column">
+            {/* Journal Meta Header */}
+            <div className="hero-journal-meta reveal">
+              <span className="journal-issue-chip">Field Journal // Vol. 04</span>
+              <span className="journal-location-text">Web3 Contributor / Research &amp; Community</span>
+            </div>
 
-      <div className="container" style={{ position: 'relative' }}>
-        {/* Label */}
-        <p className="hero-label animate-fade-up">
-          Web3 Community Contributor
-        </p>
+            {/* Headline */}
+            <div className="reveal reveal-delay-1">
+              <h1 id="hero-title" className="hero-editorial-headline">
+                Exploring decentralized networks.<br />
+                <span className="hero-headline-italic">Building the community layer.</span>
+              </h1>
+            </div>
 
-        {/* Headline */}
-        <h1
-          id="hero-headline"
-          className="hero-headline animate-fade-up delay-100"
-        >
-          Building stronger<br />
-          communities in{' '}
-          <span className="highlight">Web3.</span>
-        </h1>
+            {/* Introduction */}
+            <p className="hero-intro-text reveal reveal-delay-2">
+              I am a Web3 community contributor and content creator exploring emerging protocols, DeFi, and NFTs. I support ecosystems through hands-on moderation, clear technical onboarding, and authentic research dispatches.
+            </p>
 
-        {/* Sub */}
-        <p className="hero-sub animate-fade-up delay-200">
-          I help crypto and NFT projects grow through community engagement,
-          Discord moderation, and content that connects people with the
-          projects they care about.
-        </p>
+            {/* Action Buttons */}
+            <div className="hero-actions-group reveal reveal-delay-2">
+              <a
+                href="#experience"
+                id="hero-cta-explore"
+                className="btn-primary"
+                onClick={scrollToExperience}
+              >
+                <span>Explore Experience</span>
+                <ArrowDown size={16} aria-hidden="true" />
+              </a>
 
-        {/* Actions */}
-        <div className="hero-actions animate-fade-up delay-300">
-          <a
-            href="#contact"
-            id="hero-cta-connect"
-            className="btn-primary"
-            onClick={scrollToContact}
-          >
-            Let's Connect
-          </a>
-          <a
-            href="#experience"
-            id="hero-cta-experience"
-            className="btn-secondary"
-            onClick={scrollToExperience}
-          >
-            View Experience
-            <ArrowDown size={15} />
-          </a>
+              <a
+                href={X_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="hero-cta-contact-x"
+                className="btn-secondary"
+                aria-label="Contact Matrix 18 on X"
+              >
+                <XSocialIcon />
+                <span>Contact on X</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+
+            {/* Field Journal Dispatch Bar */}
+            <div className="hero-field-dispatch-bar reveal reveal-delay-3">
+              <span className="dispatch-live-badge">
+                <span className="dispatch-pulse-dot" aria-hidden="true" />
+                Active Dispatch
+              </span>
+              <span>Focus: Pharos Network Contributor / DeFi Ecosystems</span>
+              <span className="text-muted">/</span>
+              <a
+                href={X_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--accent-cobalt)', fontWeight: 600 }}
+              >
+                @DeFiMatrix18
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Mounted Field Specimen Card */}
+          <div className="hero-specimen-column reveal reveal-delay-1">
+            <div className="specimen-mounting-card">
+              <div className="specimen-header">
+                <span>SPECIMEN // M18-ARCHIVE</span>
+                <span className="text-terracotta">VERIFIED ID</span>
+              </div>
+
+              <div className="specimen-image-frame">
+                {!imageError ? (
+                  <img
+                    src="/assets/matrix-18-pfp.jpg"
+                    alt="Matrix 18 profile picture"
+                    className="specimen-avatar-img"
+                    onError={() => setImageError(true)}
+                    width="320"
+                    height="320"
+                    loading="eager"
+                  />
+                ) : (
+                  <div className="specimen-monogram-view" aria-label="Matrix 18 avatar representation">
+                    <div className="specimen-monogram-initials">M18</div>
+                    <span className="specimen-monogram-sub">WEB3 CONTRIBUTOR</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Specimen Log Details */}
+              <div className="specimen-log-details" aria-label="Profile metadata">
+                <div className="specimen-log-row">
+                  <span className="specimen-log-key">classification:</span>
+                  <span className="specimen-log-val">community_contributor</span>
+                </div>
+                <div className="specimen-log-row">
+                  <span className="specimen-log-key">research:</span>
+                  <span className="specimen-log-val text-cobalt">defi · nfts · testnets</span>
+                </div>
+                <div className="specimen-log-row">
+                  <span className="specimen-log-key">channels:</span>
+                  <span className="specimen-log-val">discord · telegram · x</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* X link */}
-        <a
-          href={X_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hero-x-link animate-fade-up delay-400"
-          aria-label="Follow Matrix 18 on X (formerly Twitter)"
-        >
-          <XSocialIcon />
-          @DeFiMatrix18
-        </a>
       </div>
     </section>
   )

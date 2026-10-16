@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { ZoomIn, X as CloseIcon, ShieldCheck } from 'lucide-react'
+import { ZoomIn, X as CloseIcon, CheckCircle2 } from 'lucide-react'
 
 interface CommunityRoleItem {
   id: string
   title: string
   platform: string
-  confirmedRole?: string
+  confirmedRole: string
   description: string
   imageSrc: string
   imageAlt: string
@@ -19,7 +19,7 @@ const communityRolesData: CommunityRoleItem[] = [
     title: 'Pharos Network Community Roles',
     platform: 'Discord',
     confirmedRole: 'Real OG & Contributor',
-    description: 'Community roles earned within the Pharos Network ecosystem.',
+    description: 'Verified community roles earned within the Pharos Network Discord server.',
     imageSrc: '/assets/pharos-roles.png',
     imageAlt: 'Pharos Network Discord community roles screenshot showing Real OG, Pharos Maniac, Elder Storyteller, Reg-Contributor, Octopi, Developer, Public Devnet Contest, and IN roles',
     roles: [
@@ -38,7 +38,7 @@ const communityRolesData: CommunityRoleItem[] = [
     title: 'JuiceHedz Community',
     platform: 'Discord',
     confirmedRole: 'Volunteer',
-    description: 'Community involvement in JuiceHedz with confirmed Volunteer role. Other visible Discord roles represent profile details.',
+    description: 'Active community involvement in JuiceHedz with confirmed Volunteer role.',
     imageSrc: '/assets/juicehedz-roles.png',
     imageAlt: 'JuiceHedz Discord profile screenshot showing confirmed Volunteer role and community profile details',
     roles: [
@@ -47,7 +47,7 @@ const communityRolesData: CommunityRoleItem[] = [
       'JuiceList FCFS',
       'Juiced',
     ],
-    note: 'Confirmed role: Volunteer. Other visible Discord roles are profile details.',
+    note: 'Confirmed role: Volunteer. Other visible Discord roles represent profile details.',
   },
   {
     id: 'perpsx',
@@ -92,31 +92,29 @@ export default function CommunityRoles() {
   }, [activeItem, closeModal])
 
   return (
-    <section id="roles" className="section community-section" aria-labelledby="roles-heading">
+    <section id="roles" className="section roles-archive-section" aria-labelledby="roles-heading">
       <div className="container">
-        <div className="section-divider" aria-hidden="true" />
-
-        <div className="roles-header">
-          <p className="section-label" aria-hidden="true">Recognition</p>
-          <h2 id="roles-heading" className="section-heading reveal">
+        <div className="section-editorial-header">
+          <span className="section-journal-tag terracotta">Verified Proof // 03</span>
+          <h2 id="roles-heading" className="section-title reveal">
             Community Roles &amp; Recognition
           </h2>
-          <p className="section-subtitle reveal">
-            Communities I've been part of and roles I've earned.
+          <p className="section-desc reveal reveal-delay-1">
+            Visual documentation of earned roles, contributor titles, and community involvement across verified Web3 Discord servers and Telegram groups.
           </p>
         </div>
 
-        <div className="community-grid" role="list" aria-label="Visual proof of Web3 community roles">
+        <div className="proof-archive-grid" role="list" aria-label="Visual proof of Web3 community roles">
           {communityRolesData.map((item, index) => (
             <article
               key={item.id}
-              className="community-card reveal"
-              style={{ transitionDelay: `${index * 0.12}s` }}
+              className="proof-specimen-card reveal"
+              style={{ transitionDelay: `${index * 0.1}s` }}
               role="listitem"
             >
               {/* Image Preview Container */}
               <div
-                className="community-image-wrapper"
+                className="proof-figure-frame"
                 onClick={() => setActiveItem(item)}
                 role="button"
                 tabIndex={0}
@@ -131,50 +129,51 @@ export default function CommunityRoles() {
                 <img
                   src={item.imageSrc}
                   alt={item.imageAlt}
-                  className="community-img"
+                  className="proof-screenshot-img"
                   loading="lazy"
+                  width="400"
+                  height="220"
                 />
-                <div className="community-image-overlay">
-                  <span className="community-zoom-badge">
+                <div className="proof-hover-cue">
+                  <span className="proof-zoom-button">
                     <ZoomIn size={15} aria-hidden="true" />
-                    Click to enlarge
+                    Enlarge Evidence
                   </span>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="community-card-body">
-                <div className="community-card-meta">
-                  <span className="community-platform-badge">
+              <div className="proof-card-body">
+                <div className="proof-top-meta">
+                  <span className="proof-channel-tag">
                     {item.platform}
                   </span>
-                  {item.confirmedRole && (
-                    <span className="community-confirmed-badge">
-                      <ShieldCheck size={13} aria-hidden="true" />
-                      {item.confirmedRole}
-                    </span>
-                  )}
+
+                  <span className="proof-status-confirmed">
+                    <CheckCircle2 size={13} aria-hidden="true" />
+                    <span>{item.confirmedRole}</span>
+                  </span>
                 </div>
 
-                <h3 className="community-card-title">
+                <h3 className="proof-title">
                   {item.title}
                 </h3>
 
-                <p className="community-card-desc">
+                <p className="proof-description">
                   {item.description}
                 </p>
 
-                {/* Role tags list */}
-                <div className="community-roles-tags" aria-label={`Roles for ${item.title}`}>
+                {/* Roles Tray */}
+                <div className="proof-roles-tray" aria-label={`Roles for ${item.title}`}>
                   {item.roles.map((role) => (
-                    <span key={role} className="community-role-pill">
+                    <span key={role} className="proof-role-chip">
                       {role}
                     </span>
                   ))}
                 </div>
 
                 {item.note && (
-                  <p className="community-card-note">
+                  <p className="proof-clarification-note">
                     {item.note}
                   </p>
                 )}
@@ -184,7 +183,7 @@ export default function CommunityRoles() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Accessible Lightbox Modal */}
       {activeItem && (
         <div
           className="lightbox-backdrop"
@@ -194,12 +193,14 @@ export default function CommunityRoles() {
           aria-label={`Enlarged view of ${activeItem.title}`}
         >
           <div
-            className="lightbox-container"
+            className="lightbox-window"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="lightbox-header">
+            <div className="lightbox-topbar">
               <div>
-                <span className="lightbox-platform">{activeItem.platform}</span>
+                <span className="proof-channel-tag" style={{ display: 'inline-block', marginBottom: '0.25rem' }}>
+                  {activeItem.platform}
+                </span>
                 <h4 className="lightbox-title">{activeItem.title}</h4>
               </div>
               <button
@@ -208,23 +209,23 @@ export default function CommunityRoles() {
                 onClick={closeModal}
                 aria-label="Close enlarged screenshot"
               >
-                <CloseIcon size={20} />
+                <CloseIcon size={18} />
               </button>
             </div>
 
-            <div className="lightbox-image-box">
+            <div className="lightbox-viewport">
               <img
                 src={activeItem.imageSrc}
                 alt={activeItem.imageAlt}
-                className="lightbox-img"
+                className="lightbox-full-image"
               />
             </div>
 
-            <div className="lightbox-footer">
-              <p className="lightbox-caption">{activeItem.description}</p>
-              <div className="lightbox-tags">
+            <div className="lightbox-footer-info">
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{activeItem.description}</p>
+              <div className="proof-roles-tray" style={{ borderTop: 'none', paddingTop: 0 }}>
                 {activeItem.roles.map((r) => (
-                  <span key={r} className="community-role-pill">
+                  <span key={r} className="proof-role-chip">
                     {r}
                   </span>
                 ))}

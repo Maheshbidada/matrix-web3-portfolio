@@ -1,101 +1,118 @@
-import { ArrowUpRight, Clock } from 'lucide-react'
-
-interface WorkItem {
-  number: string
-  title: string
-  description: string
-  isPlaceholder: boolean
-  link?: string
-  linkLabel?: string
+interface EcosystemItem {
+  name: string
+  category: string
+  focus: string
+  summary: string
+  tags: string[]
 }
 
-const works: WorkItem[] = [
+const ecosystemsList: EcosystemItem[] = [
   {
-    number: '01',
-    title: 'Community Contributions',
-    description:
-      'Ongoing participation and contribution to Web3 and NFT project communities, including support activities, discussions, and engagement with community members.',
-    isPlaceholder: true,
+    name: 'Pharos Network',
+    category: 'Layer 1 / DeFi',
+    focus: 'Community Contributor & Real OG',
+    summary: 'Active regional community contributor helping members with ecosystem updates, devnet activities, and educational content.',
+    tags: ['Regional Contributor', 'Real OG', 'Discord & Devnet'],
   },
   {
-    number: '02',
-    title: 'Web3 Content',
-    description:
-      'Content created to share Web3 project updates, ecosystem insights, and community news. Making information accessible and useful for community members.',
-    isPlaceholder: true,
+    name: 'Zama',
+    category: 'FHE & Privacy',
+    focus: 'Community Tracking & Exploration',
+    summary: 'Following developments in Fully Homomorphic Encryption (FHE) and confidential smart contract infrastructure.',
+    tags: ['FHE', 'Confidential Computing', 'Research'],
   },
   {
-    number: '03',
-    title: 'Discord Community Support',
-    description:
-      'Moderation and support activities in Discord community servers. Keeping spaces welcoming, organised, and helpful for members at all experience levels.',
-    isPlaceholder: true,
+    name: 'Union',
+    category: 'Interoperability',
+    focus: 'Protocol Exploration',
+    summary: 'Tracking zero-knowledge interoperability, consensus verification, and modular cross-chain messaging.',
+    tags: ['ZK Interop', 'IBC', 'Cross-chain'],
+  },
+  {
+    name: 'Aztec Network',
+    category: 'Privacy Rollup',
+    focus: 'Ecosystem Participation',
+    summary: 'Exploring zero-knowledge privacy architecture, Noir language concepts, and private smart contract ecosystems.',
+    tags: ['ZK Rollup', 'Noir', 'Privacy'],
+  },
+  {
+    name: 'Gensyn',
+    category: 'Decentralized AI',
+    focus: 'Compute Network Research',
+    summary: 'Exploring decentralized machine learning compute networks and hardware verification mechanics.',
+    tags: ['DeAI', 'Compute', 'Verification'],
+  },
+  {
+    name: 'Story Protocol',
+    category: 'IP Infrastructure',
+    focus: 'Ecosystem Community',
+    summary: 'Engaging with programmable intellectual property infrastructure and digital creator attribution.',
+    tags: ['Programmable IP', 'Creator Tech', 'Infrastructure'],
+  },
+  {
+    name: 'Billions Network',
+    category: 'Infrastructure',
+    focus: 'Community Awareness',
+    summary: 'Tracking scalable Web3 infrastructure initiatives and ecosystem contributor campaigns.',
+    tags: ['Infrastructure', 'Community', 'Web3'],
+  },
+  {
+    name: 'Perle Labs & Codex',
+    category: 'Data & Storage',
+    focus: 'Decentralized Tooling',
+    summary: 'Researching decentralized storage primitives, data integrity tools, and modular protocol layers.',
+    tags: ['Data Storage', 'Tooling', 'Modular'],
+  },
+  {
+    name: 'Seismic, Rialo & Yakoa',
+    category: 'Emerging Protocols',
+    focus: 'Early Stage Exploration',
+    summary: 'Participating in early-stage community testing, feedback discussions, and developer campaign tracking.',
+    tags: ['Early Stage', 'Protocol Testing', 'Feedback'],
   },
 ]
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="section work-section" aria-labelledby="work-heading">
+    <section id="ecosystems" className="section ecosystem-section" aria-labelledby="ecosystems-heading">
       <div className="container">
-        <div className="section-divider" aria-hidden="true" />
+        <div className="section-editorial-header">
+          <span className="section-journal-tag">Research Archive // 05</span>
+          <h2 id="ecosystems-heading" className="section-title reveal">
+            Selected Web3 Ecosystems
+          </h2>
+          <p className="section-desc reveal reveal-delay-1">
+            Networks, protocols, and modular ecosystems where I have contributed, participated in testing, or conducted community research.
+          </p>
+        </div>
 
-        <p className="section-label" aria-hidden="true">Selected Work</p>
-        <h2 id="work-heading" className="section-heading reveal">
-          Things I've worked on.
-        </h2>
-        <p
-          className="reveal"
-          style={{
-            fontSize: '0.9rem',
-            color: 'var(--text-muted)',
-            marginTop: '0.5rem',
-            marginBottom: '2.5rem',
-          }}
-        >
-          Real examples and links will be added as they become available.
-        </p>
-
-        <div className="work-grid">
-          {works.map((item, i) => (
+        <div className="ecosystem-archive-grid" role="list" aria-label="Web3 Ecosystems list">
+          {ecosystemsList.map((item, index) => (
             <article
-              key={item.number}
-              className="work-card reveal"
-              style={{ transitionDelay: `${i * 0.1}s` }}
-              aria-labelledby={`work-title-${item.number}`}
+              key={item.name}
+              className="ecosystem-dossier-card reveal"
+              style={{ transitionDelay: `${index * 0.06}s` }}
+              role="listitem"
             >
-              <div className="work-card-inner">
-                <p className="work-card-number" aria-hidden="true">
-                  {item.number}
-                </p>
-                <h3
-                  id={`work-title-${item.number}`}
-                  className="work-card-title"
-                >
-                  {item.title}
-                </h3>
-                <p className="work-card-desc">{item.description}</p>
+              <div className="ecosystem-card-header">
+                <h3 className="ecosystem-title">{item.name}</h3>
+                <span className="ecosystem-domain-tag">{item.category}</span>
+              </div>
 
-                {item.isPlaceholder && !item.link && (
-                  <span
-                    className="work-card-placeholder"
-                    aria-label="Placeholder. Link to be added."
-                  >
-                    <Clock size={11} />
-                    Link coming soon
+              <p className="ecosystem-focus-line">
+                {item.focus}
+              </p>
+
+              <p className="ecosystem-summary-text">
+                {item.summary}
+              </p>
+
+              <div className="ecosystem-tags-list" aria-label={`Tags for ${item.name}`}>
+                {item.tags.map((tag) => (
+                  <span key={tag} className="ecosystem-tag-token">
+                    #{tag}
                   </span>
-                )}
-
-                {item.link && (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="work-card-link"
-                    aria-label={`View ${item.title}`}
-                  >
-                    {item.linkLabel ?? 'View'} <ArrowUpRight size={14} />
-                  </a>
-                )}
+                ))}
               </div>
             </article>
           ))}

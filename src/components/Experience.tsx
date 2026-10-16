@@ -1,112 +1,129 @@
 interface ExperienceItem {
-  badge: string
-  badgeVariant?: 'default' | 'pharos'
-  org: string
-  role?: string
-  rolePills?: { label: string; variant: 'blue' | 'violet' | 'default' }[]
+  category: string
+  categoryVariant?: 'cobalt' | 'stone'
+  organization: string
+  roles?: { label: string; variant: 'cobalt' | 'terracotta' | 'default' }[]
   bullets: string[]
-  isPharos?: boolean
+  featured?: boolean
 }
 
 const experiences: ExperienceItem[] = [
   {
-    badge: 'Community Contribution',
-    badgeVariant: 'pharos',
-    org: 'Pharos Network',
-    rolePills: [
-      { label: 'Regional Contributor', variant: 'blue' },
-      { label: 'Real OG', variant: 'violet' },
+    category: 'Ecosystem Contributor',
+    categoryVariant: 'cobalt',
+    organization: 'Pharos Network',
+    roles: [
+      { label: 'Regional Contributor', variant: 'cobalt' },
+      { label: 'Real OG Recognition', variant: 'terracotta' },
     ],
     bullets: [
-      'Recognised as a Regional Contributor and Real OG within the Pharos Network community.',
-      'Participated in community activities and helped support the growth of the Pharos ecosystem.',
-      'Engaged with community members and contributed to ongoing discussions and initiatives.',
+      'Regional community engagement and welcoming active ecosystem participants.',
+      'Helping community members with questions, resources, and protocol updates.',
+      'Creating informational content around ecosystem activities, campaigns, and events.',
+      'Active participation in community campaigns and contributor initiatives.',
     ],
-    isPharos: true,
+    featured: true,
   },
   {
-    badge: 'Moderation',
-    org: 'Discord Community Moderation',
-    role: 'Community Moderator',
-    bullets: [
-      'Supported community conversations and helped maintain welcoming, organised spaces.',
-      'Assisted members with questions and encouraged constructive participation.',
-      'Helped keep community channels focused, respectful, and accessible to newcomers.',
+    category: 'Community Moderation',
+    organization: 'Discord Community Moderation',
+    roles: [
+      { label: 'Discord Moderator', variant: 'default' },
+      { label: 'Member Support', variant: 'default' },
     ],
-  },
-  {
-    badge: 'Engagement',
-    org: 'Web3 and NFT Community Engagement',
-    role: 'Community Participant',
     bullets: [
-      'Actively participated in Web3 and NFT communities across various platforms.',
-      'Engaged with community members and supported project discussions.',
-      'Contributed to community activities and helped build connections within ecosystems.',
+      'Discord moderation and welcoming newcomer conversations across Web3 channels.',
+      'Assisting members with questions, channel navigation, and safety reminders.',
+      'Maintaining constructive, organized, and spam-free community environments.',
     ],
   },
   {
-    badge: 'Content',
-    org: 'Web3 Content Creation',
-    role: 'Content Creator',
+    category: 'Social Content & Growth',
+    organization: 'X Content Creation & Ecosystem Promotion',
+    roles: [
+      { label: 'Content Creator', variant: 'default' },
+      { label: 'Community Support', variant: 'default' },
+    ],
     bullets: [
-      'Created content about Web3 projects, ecosystems, and community news.',
-      'Shared updates, insights, and community-related posts to keep people informed.',
-      'Made project information more approachable and easier to understand for community members.',
+      'X content creation and project promotion for emerging Web3 protocols and ideas.',
+      'Writing threads and updates that explain ecosystem mechanics and event milestones clearly.',
+      'Engaging with broader Web3 audiences to build interest in community campaigns.',
+    ],
+  },
+  {
+    category: 'Campaign & Event Operations',
+    organization: 'Web3 & NFT Community Experience',
+    roles: [
+      { label: 'Volunteer Support', variant: 'default' },
+      { label: 'Community Member', variant: 'default' },
+    ],
+    bullets: [
+      'Campaign, giveaway, and community event support across Discord and Telegram groups.',
+      'Active participation across DeFi, NFTs, privacy, infrastructure, and emerging Web3 ecosystems.',
+      'Coordinating with fellow contributors to ensure smooth community activities.',
     ],
   },
 ]
 
 export default function Experience() {
   return (
-    <section id="experience" className="section" aria-labelledby="experience-heading">
+    <section id="experience" className="section experience-section" aria-labelledby="experience-heading">
       <div className="container">
-        <div className="section-divider" aria-hidden="true" />
+        <div className="section-editorial-header">
+          <span className="section-journal-tag">Chronology // 02</span>
+          <h2 id="experience-heading" className="section-title reveal">
+            Hands-on community experience.
+          </h2>
+          <p className="section-desc reveal reveal-delay-1">
+            A track record of active moderation, content creation, and contributor roles across emerging Web3 protocols and community ecosystems.
+          </p>
+        </div>
 
-        <p className="section-label" aria-hidden="true">Experience</p>
-        <h2 id="experience-heading" className="section-heading reveal">
-          What I've been up to.
-        </h2>
-
-        <div className="experience-list" style={{ marginTop: '2.5rem' }} role="list">
-          {experiences.map((exp, i) => (
+        <div className="exp-chronology-list" role="list" aria-label="Experience timeline">
+          {experiences.map((exp, index) => (
             <article
-              key={exp.org}
-              className={`exp-item reveal${exp.isPharos ? ' pharos' : ''}`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
+              key={exp.organization}
+              className={`exp-entry-card reveal${exp.featured ? ' featured' : ''}`}
+              style={{ transitionDelay: `${index * 0.08}s` }}
               role="listitem"
             >
-              {/* Meta */}
-              <div className="exp-meta">
-                <span className={`exp-badge${exp.badgeVariant === 'pharos' ? ' pharos-badge' : ''}`}>
-                  {exp.badge}
+              {/* Left Meta Column */}
+              <div className="exp-meta-side">
+                <span className={`exp-domain-pill ${exp.categoryVariant === 'cobalt' ? 'cobalt' : ''}`}>
+                  {exp.category}
                 </span>
-                <p className="exp-org">{exp.org}</p>
 
-                {exp.role && (
-                  <p className="exp-role">{exp.role}</p>
-                )}
+                <h3 className="exp-org-heading">
+                  {exp.organization}
+                </h3>
 
-                {exp.rolePills && (
-                  <div className="exp-role-pills">
-                    {exp.rolePills.map((pill) => (
+                {exp.roles && (
+                  <div className="exp-roles-wrap">
+                    {exp.roles.map((r) => (
                       <span
-                        key={pill.label}
-                        className={`exp-role-pill ${pill.variant}`}
+                        key={r.label}
+                        className={`exp-tag-pill ${
+                          r.variant === 'cobalt'
+                            ? 'accent-cobalt'
+                            : r.variant === 'terracotta'
+                            ? 'accent-terracotta'
+                            : ''
+                        }`}
                       >
-                        {pill.label}
+                        {r.label}
                       </span>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Description */}
-              <div className="exp-description">
-                <ul className="exp-bullets" aria-label={`Contributions at ${exp.org}`}>
-                  {exp.bullets.map((b) => (
-                    <li key={b} className="exp-bullet">
-                      <span className="exp-bullet-dot" aria-hidden="true" />
-                      {b}
+              {/* Right Bullets Column */}
+              <div className="exp-bullets-side">
+                <ul className="exp-bullets-list" aria-label={`Contributions for ${exp.organization}`}>
+                  {exp.bullets.map((point) => (
+                    <li key={point} className="exp-bullet-row">
+                      <span className="exp-bullet-icon" aria-hidden="true" />
+                      <span>{point}</span>
                     </li>
                   ))}
                 </ul>

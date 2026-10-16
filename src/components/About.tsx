@@ -1,53 +1,58 @@
-const interests = [
-  'Web3 Community',
-  'Discord Moderation',
-  'NFT Ecosystems',
-  'Content Creation',
-  'Community Support',
-  'Social Media',
+const pillars = [
+  'Community Moderation',
+  'Protocol Research & Testing',
+  'X Content & Campaign Support',
+  'Discord Architecture & Roles',
+  'DeFi & NFT Ecosystems',
+  'Member Onboarding & Support',
 ]
 
 export default function About() {
   return (
-    <section id="about" className="about-section" aria-labelledby="about-heading">
+    <section id="about" className="section about-section" aria-labelledby="about-heading">
       <div className="container">
-        <div className="about-grid">
-          {/* Left col */}
-          <div className="about-left">
-            <p className="section-label" aria-hidden="true">About</p>
-            <h2 id="about-heading" className="section-heading reveal">
-              A little about me.
-            </h2>
+        <div className="about-dossier-grid">
+          {/* Left Column: Thesis & Philosophical Stance */}
+          <div className="about-thesis-block">
+            <div className="section-editorial-header">
+              <span className="section-journal-tag">Field Dossier // 01</span>
+              <h2 id="about-heading" className="section-title reveal">
+                The human layer behind decentralized networks.
+              </h2>
+              <p className="section-desc reveal reveal-delay-1">
+                Protocols run on cryptographic code, but they grow through people. Real community contribution is about patient onboarding, active moderation, and turning complex documentation into clear, approachable conversations.
+              </p>
+            </div>
 
-            <div className="about-tags reveal reveal-delay-1">
-              {interests.map((tag) => (
-                <span key={tag} className="about-tag">{tag}</span>
-              ))}
+            <div className="about-manifesto-note reveal reveal-delay-2" style={{ padding: '1.25rem', background: 'var(--bg-canvas)', border: '1px solid var(--border)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                <span className="text-cobalt" style={{ fontWeight: 700, letterSpacing: '0.04em' }}>[ CORE PRINCIPLE ]</span> Authentic participation and continuous community assistance create lasting protocol adoption, far surpassing automated hype.
+              </p>
             </div>
           </div>
 
-          {/* Right col */}
-          <div>
-            <p className="about-text reveal">
-              I'm Matrix 18, a Web3 community contributor who genuinely enjoys
-              being part of crypto and NFT ecosystems. My interest in this space
-              started with curiosity about how decentralized projects actually work,
-              and quickly grew into a passion for the communities that make them
-              thrive.
-            </p>
-            <p className="about-text reveal reveal-delay-1">
-              Community is the backbone of every Web3 project. A great product
-              doesn't go far without engaged, informed, and welcoming people
-              around it. That's where I like to contribute: moderating Discord
-              servers, helping newcomers find their footing, and creating content
-              that makes complex topics more approachable.
-            </p>
-            <p className="about-text reveal reveal-delay-2">
-              I focus on honest engagement over hype. I'd rather help someone
-              genuinely understand a project than push empty enthusiasm. If you're
-              building a Web3 community or NFT project and need someone who cares
-              about the people behind the wallets, let's talk.
-            </p>
+          {/* Right Column: Editorial Quote Card & Pillar Matrix */}
+          <div className="about-content-block">
+            <div className="about-quote-card reveal">
+              <p className="about-quote-lead">
+                "I am <strong>Matrix 18</strong>, a Web3 community contributor and content creator focused on DeFi, NFTs, and emerging protocols. I have experience in community moderation, engagement, campaign support, and X content creation across multiple Web3 ecosystems. I enjoy exploring new projects, connecting with communities, and sharing what I learn."
+              </p>
+
+              <div className="about-divider-rule" aria-hidden="true" />
+
+              <p className="about-prose-text">
+                Every project has its own unique rhythm and community culture. Whether answering technical questions for new joiners, coordinating event announcements, or tracking governance updates, I enjoy helping ecosystems build welcoming, well-moderated environments where builders and enthusiasts can connect productively.
+              </p>
+
+              <div className="about-pillars-grid" role="list" aria-label="Core focus areas">
+                {pillars.map((item) => (
+                  <div key={item} className="about-pillar-badge" role="listitem">
+                    <span className="pillar-bullet-cobalt" aria-hidden="true" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
