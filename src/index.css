@@ -1257,6 +1257,72 @@
   color: var(--text-primary);
 }
 
+/* Stack of social cards in right column */
+.contact-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* Badge colour variants */
+.contact-badge-x {
+  background: var(--text-primary);
+}
+
+.contact-badge-discord {
+  background: #5865F2;
+}
+
+.contact-badge-telegram {
+  background: #0088CC;
+}
+
+/* Discord card: not a link, no translateX hover */
+.contact-discord-card {
+  cursor: default;
+}
+.contact-discord-card:hover {
+  transform: none;
+  border-color: #5865F2;
+}
+
+/* Telegram card hover accent */
+.contact-telegram-card:hover {
+  border-color: #0088CC;
+}
+
+/* Copy-to-clipboard button */
+.contact-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.75rem;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--bg-stone-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.contact-copy-btn:hover {
+  background: var(--accent-cobalt-subtle);
+  border-color: var(--accent-cobalt);
+  color: var(--accent-cobalt);
+}
+.contact-copy-btn:active {
+  transform: scale(0.97);
+}
+
+.contact-copy-label {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+
 /* ── Footer ───────────────────────────────────────── */
 .footer-colophon {
   padding: 4rem 0;

@@ -59,7 +59,6 @@ export default function Navbar() {
             }}
           >
             <span className="nav-logo-name">Matrix 18</span>
-            <span className="nav-logo-sub">[ Field Journal ]</span>
           </a>
 
           {/* Desktop Links */}
