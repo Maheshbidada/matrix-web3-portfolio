@@ -62,6 +62,19 @@ const communityRolesData: CommunityRoleItem[] = [
       'Telegram Community',
     ],
   },
+  {
+    id: 'lenium',
+    title: 'Lenium Capital',
+    platform: 'Discord',
+    confirmedRole: 'Discord Moderator',
+    description: 'Official Lenium Capital announcement confirming Discord Moderator role.',
+    imageSrc: '/assets/lenium-moderator-proof.png',
+    imageAlt: 'Lenium Capital Discord announcement screenshot naming MAHI VK as the new Discord Moderator, with message from LC confirming the selection',
+    roles: [
+      'Discord Moderator',
+      'Community Moderation',
+    ],
+  },
 ]
 
 export default function CommunityRoles() {

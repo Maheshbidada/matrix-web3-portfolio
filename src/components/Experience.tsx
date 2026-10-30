@@ -26,6 +26,19 @@ const experiences: ExperienceItem[] = [
   },
   {
     category: 'Community Moderation',
+    organization: 'Lenium Capital',
+    roles: [
+      { label: 'Discord Moderator', variant: 'cobalt' },
+      { label: 'Community Moderation', variant: 'default' },
+    ],
+    bullets: [
+      'Supporting the Lenium Discord community through member engagement, community assistance, and moderation.',
+      'Assisting members with questions, channel navigation, and community guidelines.',
+      'Maintaining a constructive, organized, and welcoming environment for all community members.',
+    ],
+  },
+  {
+    category: 'Community Moderation',
     organization: 'Discord Community Moderation',
     roles: [
       { label: 'Discord Moderator', variant: 'default' },
